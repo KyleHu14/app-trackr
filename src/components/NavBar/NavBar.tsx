@@ -1,31 +1,26 @@
-"use client"
-
 import { Target } from "lucide-react"
-import { Button } from "@/src/components/ui/button"
-import { authClient } from "@/src/lib/auth-client"
+import Link from "next/link"
+import SignInButton from "./elements/SignInButton"
+import SignOutButton from "./elements/SignOutButton"
+import { headers } from "next/headers"
+import { auth } from "@/src/lib/auth"
 
-const NavBar = () => {
-	const signIn = async () => {
-		const data = await authClient.signIn.social({
-			provider: "google",
-			callbackURL: "/dashboard",
-		})
-	}
+const NavBar = async () => {
+	const requestHeaders = await headers()
+	const session = await auth.api.getSession({ headers: requestHeaders })
 
 	return (
 		<header className="border-b-2">
 			<nav className="flex justify-between items-center mx-auto px-4 py-6 container">
-				<div className="flex items-center space-x-2">
+				<Link href="/" className="flex items-center space-x-2">
 					<Target className="w-8 h-8 text-blue-600" />
 					<span className="font-bold text-gray-900 dark:text-gray-100 text-2xl">
 						AppTrackr
 					</span>
-				</div>
+				</Link>
+
 				<div className="flex items-center space-x-4">
-					<Button variant="ghost" onClick={signIn}>
-						Sign In
-					</Button>
-					<Button>Get Started</Button>
+					{!session ? <SignInButton /> : <SignOutButton />}
 				</div>
 			</nav>
 		</header>
