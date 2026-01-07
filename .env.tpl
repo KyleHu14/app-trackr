@@ -1,0 +1,11 @@
+# Prisma Config
+DATABASE_URL=
+DIRECT_URL=
+
+# Better Auth
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=
+
+# Google Client Secrets
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
