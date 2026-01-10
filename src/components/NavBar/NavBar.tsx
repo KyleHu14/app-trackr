@@ -1,9 +1,9 @@
 import { Target } from "lucide-react"
 import Link from "next/link"
 import SignInButton from "./elements/SignInButton"
-import SignOutButton from "./elements/SignOutButton"
 import { headers } from "next/headers"
 import { auth } from "@/src/lib/auth"
+import UserButton from "./elements/UserButton/UserButton"
 
 const NavBar = async () => {
 	const requestHeaders = await headers()
@@ -20,7 +20,7 @@ const NavBar = async () => {
 				</Link>
 
 				<div className="flex items-center space-x-4">
-					{!session ? <SignInButton /> : <SignOutButton />}
+					{!session ? <SignInButton /> : <UserButton />}
 				</div>
 			</nav>
 		</header>
