@@ -20,6 +20,13 @@ const NavBar = async () => {
 				</Link>
 
 				<div className="flex items-center space-x-4">
+					{session && (
+						<Link
+							className="font-semibold hover:underline"
+							href="/dashboard">
+							Dashboard
+						</Link>
+					)}
 					{!session ? <SignInButton /> : <UserButton />}
 				</div>
 			</nav>
