@@ -2,6 +2,7 @@ import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
 import { revalidatePath } from "next/cache"
 import { createJobApplication } from "@/src/actions/jobApplication"
+import { Button } from "../ui/button"
 
 const JobApplicationForm = async () => {
 	const requestHeaders = await headers()
@@ -107,11 +108,11 @@ const JobApplicationForm = async () => {
 				/>
 			</div>
 
-			<button
+			<Button
 				type="submit"
 				className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full text-white transition-colors">
 				Add Job Application
-			</button>
+			</Button>
 		</form>
 	)
 }
