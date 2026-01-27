@@ -1,6 +1,6 @@
 import { headers } from "next/headers"
 import { auth } from "@/src/lib/auth"
-import { Avatar, AvatarImage } from "@/src/components/ui/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@/src/components/ui/avatar"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -29,6 +29,7 @@ const UserButton = async () => {
 		}
 
 		const user = session.user as User
+
 		return (
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
@@ -39,7 +40,11 @@ const UserButton = async () => {
 							<AvatarImage
 								src={user.image || ""}
 								alt={user.name || "User avatar"}
+								referrerPolicy="no-referrer"
 							/>
+							<AvatarFallback>
+								{user.name?.[0] || "U"}
+							</AvatarFallback>
 						</Avatar>
 					</Button>
 				</DropdownMenuTrigger>

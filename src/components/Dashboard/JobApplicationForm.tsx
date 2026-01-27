@@ -10,8 +10,6 @@ const JobApplicationForm = async () => {
 	const userId = session?.user.id
 
 	async function onSubmit(formData: FormData) {
-		"use server"
-
 		const title = formData.get("title") as string
 		const url = formData.get("url") as string
 		const notes = formData.get("notes") as string
@@ -35,7 +33,7 @@ const JobApplicationForm = async () => {
 
 		if (response.result === "error") {
 			throw new Error(
-				response.message || "Failed to create job application"
+				response.message || "Failed to create job application",
 			)
 		}
 
