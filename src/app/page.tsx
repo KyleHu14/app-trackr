@@ -79,7 +79,7 @@ export default function Home() {
 			<section className="py-16 md:py-24 text-center">
 				<div className="flex justify-center mb-4">
 					<Badge className="bg-green-600 hover:bg-green-700 px-4 py-1 text-white">
-						✨ 100% Free to Start
+						✨ 100% Free
 					</Badge>
 				</div>
 				<h1 className="mb-6 font-bold text-4xl md:text-6xl">
@@ -93,12 +93,6 @@ export default function Home() {
 					with our intuitive application tracking platform. Never lose
 					sight of an opportunity again.
 				</p>
-				<div className="flex sm:flex-row flex-col justify-center gap-4">
-					<Button size="lg">Start Tracking for Free</Button>
-					<Button variant="outline" size="lg">
-						Watch Demo
-					</Button>
-				</div>
 			</section>
 
 			{/* Features Section */}
