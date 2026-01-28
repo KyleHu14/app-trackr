@@ -2,7 +2,7 @@ import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import JobApplicationList from "@/src/components/Dashboard/JobApplicationList"
-import JobApplicationFormModal from "@/src/components/Dashboard/JobApplicationFormModal"
+import CreateJobButton from "@/src/components/Dashboard/CreateJobButton"
 
 const Dashboard = async () => {
 	const requestHeaders = await headers()
@@ -19,7 +19,7 @@ const Dashboard = async () => {
 					Welcome back, {session.user.name || session.user.email}
 				</p>
 
-				<JobApplicationFormModal />
+				<CreateJobButton />
 			</div>
 
 			<JobApplicationList />
