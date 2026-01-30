@@ -16,6 +16,7 @@ import { Field, FieldLabel } from "../ui/field"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
 import SelectField from "../Form/SelectField"
+import { useRouter } from "next/navigation"
 
 type JobApplicationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "GHOSTED"
 
@@ -27,6 +28,7 @@ const selectStatusOptions = [
 ]
 
 const CreateJobButton = () => {
+	const router = useRouter()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isPending, startTransition] = useTransition()
 	const [status, setStatus] = useState<JobApplicationStatus>("PENDING")
@@ -45,29 +47,25 @@ const CreateJobButton = () => {
 		}
 
 		startTransition(async () => {
-			try {
-				const response = await createJobApplication({
-					title,
-					url,
-					notes,
-					status,
-					userId,
-				})
+			const response = await createJobApplication({
+				title,
+				url,
+				notes,
+				status,
+				userId,
+			})
 
-				if (response.result === "error") {
-					throw new Error(
-						response.message || "Failed to create job application",
-					)
-				}
-
-				// Close modal on success
-				setIsOpen(false)
-
-				// Revalidate the dashboard page
-				window.location.reload() // Simple approach for revalidation in client component
-			} catch (error) {
-				console.error("Error creating job application:", error)
+			if (response.result === "error") {
+				throw new Error(
+					response.message || "Failed to create job application",
+				)
 			}
+
+			// Close modal on success
+			setIsOpen(false)
+
+			// Revalidate the dashboard page
+			router.refresh()
 		})
 	}
 
