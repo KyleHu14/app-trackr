@@ -17,11 +17,7 @@ const JobApplicationsTable = async ({ userId }: Props) => {
 		},
 	})
 
-	return (
-		<div className="mx-auto py-10 container">
-			<DataTable columns={columns} data={jobApplications} />
-		</div>
-	)
+	return <DataTable columns={columns} data={jobApplications} />
 }
 
 export default JobApplicationsTable
