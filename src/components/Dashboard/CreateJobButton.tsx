@@ -41,6 +41,7 @@ const CreateJobButton = () => {
 		const title = formData.get("title") as string
 		const url = formData.get("url") as string
 		const notes = formData.get("notes") as string
+		const company = formData.get("company") as string
 
 		if (!userId) {
 			throw new Error("User not authenticated")
@@ -53,6 +54,7 @@ const CreateJobButton = () => {
 				notes,
 				status,
 				userId,
+				company,
 			})
 
 			if (response.result === "error") {
@@ -91,6 +93,17 @@ const CreateJobButton = () => {
 							name="title"
 							required
 							placeholder="Frontend Developer"
+						/>
+					</Field>
+
+					<Field>
+						<FieldLabel>Company</FieldLabel>
+						<Input
+							type="text"
+							id="company"
+							name="company"
+							required
+							placeholder="Company Inc."
 						/>
 					</Field>
 

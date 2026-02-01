@@ -5,9 +5,9 @@ import { actionReturnType } from "./actionTypes"
 import { JobApplicationUncheckedCreateInput } from "@/prisma/generated/models"
 
 export const createJobApplication = async (
-	newJobApplication: JobApplicationUncheckedCreateInput
+	newJobApplication: JobApplicationUncheckedCreateInput,
 ): Promise<actionReturnType> => {
-	const { title, url, notes, status, userId } = newJobApplication
+	const { title, url, notes, status, userId, company } = newJobApplication
 
 	try {
 		await prisma.jobApplication.create({
@@ -17,6 +17,7 @@ export const createJobApplication = async (
 				notes: notes || null,
 				status,
 				userId: userId,
+				company,
 			},
 		})
 

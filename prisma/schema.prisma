@@ -17,6 +17,7 @@ model JobApplication {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  company   String?
   url       String?
   status    Status   @default(PENDING)
   notes     String?

@@ -2,10 +2,9 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { JobApplicationModel } from "@/prisma/generated/models"
-import { Link as LinkIcon, ArrowUpDown } from "lucide-react"
+import { Link2, ArrowUpDown, Link2Off } from "lucide-react"
 import Link from "next/link"
 import { Status } from "@/prisma/generated/enums"
-import { Button } from "@/src/components/ui/button"
 
 interface HeaderProps {
 	children: React.ReactNode
@@ -26,6 +25,10 @@ export const columns: ColumnDef<JobApplicationModel>[] = [
 	{
 		accessorKey: "title",
 		header: () => <Header>Job Title</Header>,
+	},
+	{
+		accessorKey: "company",
+		header: () => <Header>Company</Header>,
 	},
 	{
 		accessorKey: "status",
@@ -52,7 +55,7 @@ export const columns: ColumnDef<JobApplicationModel>[] = [
 		header: ({ column }) => {
 			return (
 				<Header className="flex items-center">
-					Applied Date
+					Date Applied
 					<ArrowUpDown
 						onClick={() =>
 							column.toggleSorting(column.getIsSorted() === "asc")
@@ -84,9 +87,13 @@ export const columns: ColumnDef<JobApplicationModel>[] = [
 			const url = row.getValue("url") as string
 			return (
 				<div className="flex justify-center">
-					<Link href={url} className="inline-block w-4 h-4">
-						<LinkIcon className="w-4 h-4 text-blue-500" />
-					</Link>
+					{url ? (
+						<Link href={url} className="inline-block w-4 h-4">
+							<Link2 className="w-4 h-4 text-blue-500" />
+						</Link>
+					) : (
+						<Link2Off className="w-4 h-4 text-red-500" />
+					)}
 				</div>
 			)
 		},

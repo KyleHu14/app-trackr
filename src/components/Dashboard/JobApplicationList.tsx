@@ -26,7 +26,7 @@ const JobApplicationList = async () => {
 	return (
 		<div className="bg-white shadow rounded-lg">
 			<h2 className="p-6 border-b font-semibold text-xl">
-				Your Applications ({jobApplications.length})
+				Your Applications
 			</h2>
 			{jobApplications.length === 0 ? (
 				<div className="p-6 text-gray-500 text-center">
