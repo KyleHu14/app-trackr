@@ -7,6 +7,7 @@ import CreateJobButton from "@/src/components/Dashboard/CreateJobButton"
 const Dashboard = async () => {
 	const requestHeaders = await headers()
 	const session = await auth.api.getSession({ headers: requestHeaders })
+
 	if (!session) {
 		redirect("/")
 	}
