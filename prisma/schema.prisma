@@ -13,16 +13,40 @@ datasource db {
   provider = "postgresql"
 }
 
+model JobApplication {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  company   String?
+  url       String?
+  status    Status   @default(PENDING)
+  notes     String?
+  title     String
+
+  // Foreign Key : User
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+enum Status {
+  ACCEPTED
+  REJECTED
+  PENDING
+  GHOSTED
+}
+
+// Better Auth Generated Tables
 model User {
-  id            String    @id
-  name          String
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
+  id              String           @id
+  name            String
+  email           String
+  emailVerified   Boolean          @default(false)
+  image           String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  sessions        Session[]
+  accounts        Account[]
+  jobApplications JobApplication[]
 
   @@unique([email])
   @@map("user")

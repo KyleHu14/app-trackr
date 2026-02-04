@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  JobApplication: 'JobApplication',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -71,6 +72,21 @@ export const TransactionIsolationLevel = {
 } as const
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const JobApplicationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  company: 'company',
+  url: 'url',
+  status: 'status',
+  notes: 'notes',
+  title: 'title',
+  userId: 'userId'
+} as const
+
+export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
