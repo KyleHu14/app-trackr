@@ -11,7 +11,6 @@ import {
 	DialogTrigger,
 } from "@/src/components/ui/dialog"
 import { createJobApplication } from "@/src/actions/jobApplication"
-import { authClient } from "@/src/lib/auth-client"
 import { Field, FieldLabel } from "../ui/field"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
@@ -33,9 +32,10 @@ const CreateJobButton = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isPending, startTransition] = useTransition()
 	const [status, setStatus] = useState<JobApplicationStatus>("PENDING")
+
 	const session = useClientSession()
 
-	const userId = session.user.id
+	const userId = session?.user?.id
 
 	async function handleSubmit(formData: FormData) {
 		const title = formData.get("title") as string

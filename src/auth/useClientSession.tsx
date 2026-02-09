@@ -2,14 +2,24 @@
 
 import { authClient } from "@/src/lib/auth-client"
 import { useRouter } from "next/navigation"
+import { useEffect } from "react"
 
 const useClientSession = (redirectTo = "/auth/error") => {
 	const router = useRouter()
-	const { data: session } = authClient.useSession()
+	const { data: session, isPending } = authClient.useSession()
 
-	if (!session || !session.user) {
-		router.push(redirectTo)
-		throw new Error("Session is missing")
+	useEffect(() => {
+		const isValidSession = session && session.user
+		if (!isPending && !isValidSession) {
+			console.error("Session is missing")
+			router.push(redirectTo)
+			throw new Error("Session is missing")
+		}
+	}, [session, router, redirectTo, isPending])
+
+	// Need to handle this in CreateJobButton
+	if (isPending) {
+		return null
 	}
 
 	return session
