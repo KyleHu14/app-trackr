@@ -1,16 +1,9 @@
-import { auth } from "@/src/lib/auth"
-import { headers } from "next/headers"
-import { redirect } from "next/navigation"
+import { getServerSession } from "@/src/auth/getServerSession"
 import JobApplicationList from "@/src/components/Dashboard/JobApplicationList"
 import CreateJobButton from "@/src/components/Dashboard/CreateJobButton"
 
 const Dashboard = async () => {
-	const requestHeaders = await headers()
-	const session = await auth.api.getSession({ headers: requestHeaders })
-
-	if (!session) {
-		redirect("/")
-	}
+	const session = await getServerSession()
 
 	return (
 		<div className="mx-auto p-6 container">

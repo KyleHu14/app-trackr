@@ -1,17 +1,10 @@
-import { auth } from "@/src/lib/auth"
-import { headers } from "next/headers"
 import { prisma } from "@/src/db/client"
 import JobApplicationsTable from "../JobApplicationsTable/JobApplicationsTable"
+import { getServerSession } from "@/src/auth/getServerSession"
 
 const JobApplicationList = async () => {
-	const requestHeaders = await headers()
-	const session = await auth.api.getSession({ headers: requestHeaders })
-
-	const userId = session?.user.id
-
-	if (!userId) {
-		return <>Something went wrong</>
-	}
+	const session = await getServerSession()
+	const userId = session.user.id
 
 	// Fetch user's job applications
 	const jobApplications = await prisma.jobApplication.findMany({
