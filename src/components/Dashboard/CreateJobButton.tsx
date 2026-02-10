@@ -16,9 +16,13 @@ import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
 import SelectField from "../Form/SelectField"
 import { useRouter } from "next/navigation"
-import useClientSession from "@/src/auth/useClientSession"
+import { Session } from "@/src/lib/auth"
 
 type JobApplicationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "GHOSTED"
+
+type Props = {
+	session: Session
+}
 
 const selectStatusOptions = [
 	{ value: "PENDING", label: "Pending" },
@@ -27,15 +31,13 @@ const selectStatusOptions = [
 	{ value: "GHOSTED", label: "Ghosted" },
 ]
 
-const CreateJobButton = () => {
+const CreateJobButton = ({ session }: Props) => {
 	const router = useRouter()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isPending, startTransition] = useTransition()
 	const [status, setStatus] = useState<JobApplicationStatus>("PENDING")
 
-	const session = useClientSession()
-
-	const userId = session?.user?.id
+	const userId = session.user.id
 
 	async function handleSubmit(formData: FormData) {
 		const title = formData.get("title") as string

@@ -13,7 +13,7 @@ const Dashboard = async () => {
 					Welcome back, {session.user.name || session.user.email}
 				</p>
 
-				<CreateJobButton />
+				<CreateJobButton session={session} />
 			</div>
 
 			<JobApplicationList />
