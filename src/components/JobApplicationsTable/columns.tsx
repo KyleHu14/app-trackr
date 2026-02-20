@@ -5,6 +5,7 @@ import { JobApplicationModel } from "@/prisma/generated/models"
 import { Link2, ArrowUpDown, Link2Off } from "lucide-react"
 import Link from "next/link"
 import { Status } from "@/prisma/generated/enums"
+import Actions from "./elements/Actions"
 
 interface HeaderProps {
 	children: React.ReactNode
@@ -96,6 +97,14 @@ export const columns: ColumnDef<JobApplicationModel>[] = [
 					)}
 				</div>
 			)
+		},
+	},
+	{
+		accessorKey: "actions",
+		header: () => <Header className="text-center">Actions</Header>,
+		cell: ({ row }) => {
+			const id = row.original.id
+			return <Actions id={id} />
 		},
 	},
 ]

@@ -17,7 +17,6 @@ const useClientSession = (redirectTo = "/auth/error") => {
 		}
 	}, [session, router, redirectTo, isPending])
 
-	// Need to handle this in CreateJobButton
 	if (isPending) {
 		return null
 	}
